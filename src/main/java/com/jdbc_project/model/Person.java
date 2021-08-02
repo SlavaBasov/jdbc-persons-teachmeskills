@@ -1,10 +1,16 @@
 package com.jdbc_project.model;
 
+import java.awt.*;
+import java.util.List;
+import java.util.Objects;
+
 public class Person {
     private int id;
     private String firstName;
     private String lastName;
     private int age;
+    private Role role;
+    private List<Job> jobs;
 
     public Person() {
     }
@@ -20,6 +26,30 @@ public class Person {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public Person(String firstName, String lastName, int age, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.role = role;
+    }
+
+    public Person(int id, String firstName, String lastName, int age, Role role) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.role = role;
+    }
+
+    public Person(int id, String firstName, String lastName, int age, Role role, List<Job> jobs) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.role = role;
+        this.jobs = jobs;
     }
 
     public int getId() {
@@ -54,6 +84,22 @@ public class Person {
         this.age = age;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public List<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -61,6 +107,21 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
+                ", role=" + role +
+                ", jobs=" + jobs +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return id == person.id && age == person.age && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(role, person.role) && Objects.equals(jobs, person.jobs);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, age, role, jobs);
     }
 }
